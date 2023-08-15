@@ -34,7 +34,7 @@ int main(void)
 			tLoop = Def3Loop;
 		}
 		fLoop++;
-		sLoop = Def2Loop;;
+		sLoop = Def2Loop;
 		Def2Loop++;
 		Def3Loop = Def2Loop;
 	}
