@@ -13,13 +13,13 @@ int main(void)
 	int n = 50;
 
 	printf("%ld, %ld, ", firstNum, secondNum);
-	while (n >= 1)
+	while (n >= 3)
 	{
 		sum = firstNum + secondNum;
 		firstNum = secondNum;
 		secondNum = sum;
 		printf("%ld", sum);
-		if (n != 1)
+		if (n != 3)
 		{
 			printf(", ");
 		}
