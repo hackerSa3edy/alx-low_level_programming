@@ -6,20 +6,21 @@
  *
  * Return: return nothing.
  */
-void main(void)
+int main(void)
 {
 	int module1 = 3;
 	int module2 = 5;
 	int baseNum = 1024;
 	int sum = 0;
 
-	while (baseNum >= 3)
+	while (baseNum >= 1)
 	{
 		baseNum--;
-		if ((baseNum % 3 == 0) || (baseNum % 5 == 0))
+		if ((baseNum % module1 == 0) || (baseNum % module2 == 0))
 		{
 			sum = sum + baseNum;
 		}
 	}
 	printf("%d\n", sum);
+	return (0);
 }
