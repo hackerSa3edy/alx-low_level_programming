@@ -17,7 +17,7 @@ int main(void)
 		sum = firstNum + secondNum;
 		firstNum = secondNum;
 		secondNum = sum;
-		if (sum % 2 == 1)
+		if (sum % 2 == 0)
 		{
 			evenSum = evenSum + sum;
 		}
