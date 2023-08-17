@@ -9,7 +9,12 @@
  */
 int print_last_digit(int n)
 {
-	int r = _abs(n % 10) + 48;
+	int r = n % 10;
+	if (r < 0)
+	{
+		r *= -1;
+	}
+	r += 48;
 
 	_putchar(r);
 	return (r - 48);
