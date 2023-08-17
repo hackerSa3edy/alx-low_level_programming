@@ -5,9 +5,32 @@
  *
  * @n: number.
  *
+ * Return: number of digits.
+ */
+int checkDigits(int n)
+{
+	int digit = 0;
+
+	if (n == 0)
+	{
+		return (1);
+	}
+	while (n != 0)
+	{
+		n = n / 10;
+		digit++;
+	}
+	return (digit);
+}
+
+/**
+ * printDigits - print each digit individually.
+ *
+ * @n: number.
+ *
  * Return: return nothing.
  */
-void checkDigits(int n)
+void printDigits(int n)
 {
 	int singleDigit;
 	int base = 10;
@@ -37,6 +60,7 @@ void print_times_table(int n)
 	int row = 0;
 	int result;
 	int nextResult;
+	int nDigits;
 
 	if (n > 15 || n < 0)
 	{
@@ -49,24 +73,15 @@ void print_times_table(int n)
 		{
 			result = row * column;
 			nextResult = (row + 1) * column;
-			checkDigits(result);
+			nDigits = checkDigits(nextResult);
+			printDigits(result);
 			if (row != n)
 			{
 				_putchar(',');
-				if (nextResult > 99)
+				while (nDigits <= 3)
 				{
 					_putchar(' ');
-				}
-				else if (nextResult > 9)
-				{
-					_putchar(' ');
-					_putchar(' ');
-				}
-				else if (nextResult > 0)
-				{
-					_putchar(' ');
-					_putchar(' ');
-					_putchar(' ');
+					nDigits++;
 				}
 			}
 			row++;
