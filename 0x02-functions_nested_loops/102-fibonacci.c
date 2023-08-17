@@ -12,14 +12,19 @@ int main(void)
 	long int sum;
 	int n = 50;
 
-	printf("%ld\n%ld\n", firstNum, secondNum);
+	printf("%ld, %ld, ", firstNum, secondNum);
 	while (n >= 1)
 	{
 		sum = firstNum + secondNum;
 		firstNum = secondNum;
 		secondNum = sum;
-		printf("%ld\n", sum);
+		printf("%ld", sum);
+		if (n != 1)
+		{
+			printf(", ");
+		}
 		n--;
 	}
+	printf("\n");
 	return (0);
 }
