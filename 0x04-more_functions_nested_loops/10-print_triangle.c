@@ -12,7 +12,7 @@ void print_triangle(int size)
 	int counter;
 	int SpCounter;
 	int CharCounter;
-	int startHash; 
+	int startHash;
 
 	if (size > 0)
 	{
