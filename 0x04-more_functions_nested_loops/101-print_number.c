@@ -9,22 +9,12 @@
  */
 void print_number(int n)
 {
-		int singleDigit;
-		int base = 10;
-	int neg = 0;
+	int singleDigit;
+	int base = 10;
 
-	if (n < 0)
-	{
-		n = -n;
-		neg = 1;
-	}
 	while (n >= base)
 	{
 		base = base * 10;
-	}
-	if (neg == 1)
-	{
-		_putchar('-');
 	}
 
 	while (base != 1)
