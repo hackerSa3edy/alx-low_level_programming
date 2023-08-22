@@ -13,9 +13,8 @@ void print_array(int *a, int n)
 {
 	int *ptr;
 	int counter;
-	const int size = sizeof(*a) + 1;
 
-	if ((n > 0) && (n <= size))
+	if (n > 0)
 	{
 		ptr = a;
 		printf("%i", *ptr);
