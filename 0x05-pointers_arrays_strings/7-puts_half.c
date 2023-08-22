@@ -28,7 +28,7 @@ void puts_half(char *str)
 	else
 	{
 		half_size = (size - 1) / 2;
-		ptr = ptr + (half_size - 1);
+		ptr = ptr + (half_size - 3);
 	}
 
 	while (*ptr != '\0')
