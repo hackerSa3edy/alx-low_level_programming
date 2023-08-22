@@ -9,7 +9,7 @@
  *
  * Return: the pointer to dest.
  */
-char * _strcpy(char *dest, char *src)
+char *_strcpy(char *dest, char *src)
 {
 	int size = 0;
 
@@ -20,6 +20,7 @@ char * _strcpy(char *dest, char *src)
 		src = src + 1;
 		size = size + sizeof(*src);
 	}
+	*dest = '\0';
 	dest = dest - size;
 	return (dest);
 }
