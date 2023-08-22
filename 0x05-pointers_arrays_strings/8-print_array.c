@@ -13,12 +13,16 @@ void print_array(int *a, int n)
 {
 	int *ptr;
 	int counter;
+	const int size = sizeof(*a) + 1;
 
-	ptr = a;
-	printf("%i", *ptr);
-	for (counter = 1; counter < n; counter++)
+	if ((n > 0) && (n <= size))
 	{
-		printf(", %i", *(ptr + counter));
+		ptr = a;
+		printf("%i", *ptr);
+		for (counter = 1; counter < n; counter++)
+		{
+			printf(", %i", *(ptr + counter));
+		}
+		printf("\n");
 	}
-	printf("\n");
 }
