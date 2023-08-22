@@ -19,16 +19,17 @@ void puts_half(char *str)
 		size = size + sizeof(*ptr);
 		ptr = ptr + 1;
 	}
+	ptr = str;
 	if (size % 2 == 0)
 	{
 		half_size = size / 2;
+		ptr = ptr + half_size;
 	}
 	else
 	{
-		half_size = (size - 1 ) / 2;
+		half_size = (size - 1) / 2;
+		ptr = ptr + (half_size - 1);
 	}
-	ptr = str;
-	ptr = ptr + half_size;
 
 	while (*ptr != '\0')
 	{
