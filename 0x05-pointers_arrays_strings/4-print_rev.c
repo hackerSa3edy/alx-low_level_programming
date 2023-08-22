@@ -19,11 +19,11 @@ void print_rev(char *s)
 		size = size + sizeof(*ptr);
 		ptr = ptr + 1;
 	}
-	while ((size >= 0) || (*ptr != '\0'))
+	while ((size != 0))
 	{
-		_putchar(*ptr);
 		size = size - 1;
 		ptr = ptr - 1;
+		_putchar(*ptr);
 	}
 	_putchar('\n');
 }
