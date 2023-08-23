@@ -57,6 +57,14 @@ int _atoi(char *s)
 				for (for_counter = 0; for_counter < size; for_counter++)
 				{
 					number = number * 10 + (*(ptr - num_size) - '0');
+					if ((sign == 1) && (number > INT_MAX))
+					{
+						return INT_MAX;
+					}
+					else if ((sing == -1) && (number < INT_MIN))
+					{
+						return INT_MIN;
+					}
 					num_size--;
 				}
 				return (number * sign);
@@ -64,6 +72,5 @@ int _atoi(char *s)
 		}
 		ptr = ptr + 1;
 	}
-	printf("\n\n");
 	return (0);
 }
