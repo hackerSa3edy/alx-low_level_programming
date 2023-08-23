@@ -51,7 +51,7 @@ int _atoi(char *s)
 				for (for_counter = 0; for_counter <= size; for_counter++)
 				{
 					cur = *(ptr - num_size) - '0';
-					if (INT_MAX - (prev * 10) < cur)
+					if ((prev > INT_MAX / 10) || (INT_MAX - (prev * 10) < cur))
 					{
 						return (sign == 1 ? INT_MAX : INT_MIN);
 					}
