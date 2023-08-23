@@ -29,9 +29,9 @@ int _isdigit(int c)
 int _atoi(char *s)
 {
 	char *ptr;
-	int size, sign, number, for_counter, num_size;
+	int size, sign, for_counter, num_size, prev, cur;
 
-	size = number = 0;
+	size = prev = 0;
 	sign = 1;
 	ptr = s;
 	while (*ptr != '\0')
@@ -42,33 +42,25 @@ int _atoi(char *s)
 			ptr = ptr + 1;
 			continue;
 		}
-		else if (*ptr == '+')
-		{
-			ptr = ptr + 1;
-			continue;
-		}
 
 		if (_isdigit(*ptr))
 		{
-			size = size + 1;
 			if ((*(ptr + 1) == ' ') || (*(ptr + 1) == '\0'))
 			{
-				num_size = size - 1;
-				for (for_counter = 0; for_counter < size; for_counter++)
+				num_size = size;
+				for (for_counter = 0; for_counter <= size; for_counter++)
 				{
-					number = number * 10 + (*(ptr - num_size) - '0');
-					if ((sign == 1) && (number > INT_MAX))
+					cur = *(ptr - num_size) - '0';
+					if (INT_MAX - prev < cur)
 					{
-						return INT_MAX;
+						return (sign == 1 ? INT_MAX : INT_MIN);
 					}
-					else if ((sign == -1) && (number < INT_MIN))
-					{
-						return INT_MIN;
-					}
+					prev = prev * 10 + cur;
 					num_size--;
 				}
-				return (number * sign);
+				return (prev * sign);
 			}
+			size = size + 1;
 		}
 		ptr = ptr + 1;
 	}
