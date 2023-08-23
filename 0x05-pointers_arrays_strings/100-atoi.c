@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <limits.h>
 
 /**
  * _isdigit - checks for a digit (0 through 9).
@@ -61,7 +61,7 @@ int _atoi(char *s)
 					{
 						return INT_MAX;
 					}
-					else if ((sing == -1) && (number < INT_MIN))
+					else if ((sign == -1) && (number < INT_MIN))
 					{
 						return INT_MIN;
 					}
