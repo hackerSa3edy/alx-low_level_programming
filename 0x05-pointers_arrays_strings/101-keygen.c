@@ -14,7 +14,7 @@ int calculateChecksum(char *str)
 	int checksum, i;
 
 	checksum = i = 0;
-	for (int i = 0; str[i] != '\0'; i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
 		checksum += str[i];
 	}
