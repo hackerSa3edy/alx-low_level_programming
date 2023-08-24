@@ -6,5 +6,6 @@ char *_strcat(char *, char *);
 char *_strncat(char *, char *, int);
 char *_strncpy(char *, char *, int);
 char *string_toupper(char *);
+char *cap_string(char *);
 
 #endif /* _MAIN_H_ */
