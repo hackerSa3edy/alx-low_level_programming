@@ -9,7 +9,7 @@
  */
 int checkSeparator(char separator)
 {
-	char separators[] = {' ', '\t', '\n', ',', ';', '.', '!', '?', '"', '(', ')', '{', '}', '\0'};
+	char separators[] = " \t\n,;.!?\"(){}";
 	int size = sizeof(separators) / sizeof(*separators);
 	int index;
 
@@ -39,13 +39,13 @@ char toUpper(char c)
 
 	for (index = 0; index < size; index++)
 	{
-		if(c == lower[index])
+		if (c == lower[index])
 		{
 			break;
 		}
 	}
 	return (upper[index]);
-}	
+}
 /**
  * cap_string - Capitalize string.
  *
