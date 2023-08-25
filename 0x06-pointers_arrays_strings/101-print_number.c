@@ -52,5 +52,5 @@ void print_number(int n)
 		print_digit(0);
 		return;
 	}
-       	print_recursive(num);
+	print_recursive(num);
 }
