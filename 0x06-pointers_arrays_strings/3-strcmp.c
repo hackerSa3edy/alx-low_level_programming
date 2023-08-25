@@ -19,7 +19,7 @@ int _strcmp(char *s1, char *s2)
 	{
 		if (*(s1 + index) != *(s2 + index))
 		{
-			value = (*(s2 + index) - *(s1 + index));
+			value = (*(s1 + index) - *(s2 + index));
 			break;
 		}
 		index++;
