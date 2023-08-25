@@ -11,5 +11,6 @@ char *leet(char *);
 void reverse_array(int *, int);
 int _strcmp(char *, char *);
 char *rot13(char *);
+void print_number(int);
 
 #endif /* _MAIN_H_ */
