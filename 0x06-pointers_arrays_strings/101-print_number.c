@@ -23,12 +23,14 @@ void print_number(int n)
 		base = base * 10;
 	}
 
-	if (sign == -1)
-	{
-		_putchar('-');
-	}
+
 	while (base != 1)
 	{
+		if (sign == -1)
+		{
+			_putchar('-');
+			sign = 1;
+		}
 		singleDigit = (n % base) / (base / 10);
 		_putchar(singleDigit + '0');
 		base = base / 10;
