@@ -1,5 +1,4 @@
 #include "main.h"
-#include "stdio.h"
 
 /**
  * string_toupper - convert all lowercase letters to uppercace.
