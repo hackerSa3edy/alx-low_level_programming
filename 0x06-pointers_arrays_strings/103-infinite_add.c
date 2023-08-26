@@ -70,7 +70,7 @@ char *infinite_add(char *num1, char *num2, char *result, int size_r)
 		if (i < len_num2)
 			sum += num2[len_num2 - i - 1] - '0';
 
-		if (i >= len_num2 && i >= len_num1)
+		if (i > len_num2 && i > len_num1)
 			break;
 
 		max_len++;
