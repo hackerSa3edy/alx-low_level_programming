@@ -12,5 +12,6 @@ void reverse_array(int *, int);
 int _strcmp(char *, char *);
 char *rot13(char *);
 void print_number(int);
+char *infinite_add(char *, char *, char *, int);
 
 #endif /* _MAIN_H_ */
