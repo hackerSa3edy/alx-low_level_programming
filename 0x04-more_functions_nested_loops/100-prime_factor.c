@@ -10,6 +10,7 @@
 void prime_factor(long int number)
 {
 	long int i;
+
 	for (i = 2; i <= number; i++)
 	{
 		if (i == number)
@@ -34,6 +35,7 @@ void prime_factor(long int number)
 int main(void)
 {
 	long int number = 612852475143;
+
 	prime_factor(number);
 	return (0);
 }
