@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * add_digits - add two digits.
@@ -25,7 +26,8 @@ int add_digits(int a, int *carry)
  */
 void reverse_arr(char *a, int n)
 {
-	int start, temp;
+	int start;
+	char temp;
 	int end = n - 1;
 
 	for (start = 0; start < end; start++)
@@ -70,13 +72,11 @@ char *infinite_add(char *num1, char *num2, char *result, int size_r)
 		if (i < len_num2)
 			sum += num2[len_num2 - i - 1] - '0';
 
-		if (i > len_num2 && i > len_num1)
+		if (i >= len_num2 && i >= len_num1)
 			break;
-
 		max_len++;
 		sum = add_digits(sum, &carry);
 		result[i] = sum + '0';
-
 		if ((max_len == size_r - 1) && (carry == 1))
 			return (0);
 	}
@@ -84,10 +84,12 @@ char *infinite_add(char *num1, char *num2, char *result, int size_r)
 	{
 		result[max_len] = carry + '0';
 		result[max_len + 1] = '\0';
+		reverse_arr(result, max_len + 1);
 	}
 	else
+	{
 		result[max_len] = '\0';
-
-	reverse_arr(result, max_len + 1);
+		reverse_arr(result, max_len);
+	}
 	return (result);
 }
