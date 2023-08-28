@@ -24,5 +24,8 @@ char *_strpbrk(char *string, char *accept)
 		if (string[index1] == accept[index2])
 			break;
 	}
+	if (!(string[index1]))
+		return (NULL);
+
 	return (string + index1);
 }
