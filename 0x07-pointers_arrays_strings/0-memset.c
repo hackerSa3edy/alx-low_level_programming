@@ -17,5 +17,5 @@ char *_memset(char *mArea, char buffer, unsigned int size)
 	{
 		mArea[index] = buffer;
 	}
-	return mArea;
+	return (mArea);
 }
