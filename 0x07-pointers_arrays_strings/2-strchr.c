@@ -11,7 +11,7 @@
  */
 char *_strchr(char *string, char character)
 {
-	int index;
+	unsigned int index;
 
 	for (index = 0; *(string + index); index++)
 	{
