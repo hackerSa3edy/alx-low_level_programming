@@ -19,11 +19,14 @@ char *_strstr(char *haystack, char *needle)
 	{
 		for (index2 = 0; needle[index2]; index2++)
 		{
-			if (!(haystack[index1 + index2]) || (haystack[index1 + index2] != needle[index2]))
+			if (haystack[index1 + index2] != needle[index2])
 			{
 				found = 0;
 				break;
 			}
+			if (!(haystack[index1 + index2]))
+				break;
+
 			found = 1;
 		}
 		if (found)
@@ -32,5 +35,5 @@ char *_strstr(char *haystack, char *needle)
 	if (found)
 		return (haystack + index1);
 
-	return (NULL); 
+	return (NULL);
 }
