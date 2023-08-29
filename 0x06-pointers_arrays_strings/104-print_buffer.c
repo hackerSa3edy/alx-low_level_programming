@@ -13,6 +13,8 @@ void print_buffer(char *b, int size)
 {
 	int index, index2, index3;
 
+	if (size == 0)
+		printf("\n");
 	for (index = 0; index < size; index = index + 10)
 	{
 		printf("%08x:", index);
