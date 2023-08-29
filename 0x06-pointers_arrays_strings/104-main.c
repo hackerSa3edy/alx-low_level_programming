@@ -18,6 +18,6 @@ int main(void)
 
 	printf("%s\n", buffer2);
 	printf("---------------------------------\n");
-	print_buffer(buffer2, sizeof(buffer2));
+	print_buffer(buffer2, 0);
 	return (0);
 }
