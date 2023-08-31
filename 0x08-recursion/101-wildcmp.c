@@ -13,29 +13,14 @@ int wildcmp(char *string1, char *string2)
 	if (*string1 == '\0' && *string2 == '\0')
 		return (1);
 
-	if (*string1 == '\0' && *string2 != '\0')
-	{
-		if (*string2 == '*')
-			return (wildcmp(string1, string2 + 1));
-		else
-			return (0);
-	}
-	if (*string1 != '\0' && *string2 == '\0')
-	{
-		if (*(string2 - 1) == '*')
-			return (1);
-		else
-			return (0);
-	}
+	if (*string1 == '\0' && *string2 == '*')
+		return (wildcmp(string1, string2 + 1));
 
 	if (*string2 == '*')
-		return (wildcmp(string1, string2 + 1));
+		return (wildcmp(string1, string2 + 1) || wildcmp(string1 + 1, string2));
 
 	if (*string1 == *string2)
 		return (wildcmp(string1 + 1, string2 + 1));
-
-	if (*(string2 - 1) == '*')
-		return (wildcmp(string1 + 1, string2));
 
 	return (0);
 }
