@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 /**
  * main - adds positive numbers.
@@ -7,7 +8,7 @@
  * @argc: number of args.
  * @argv: pointer to args.
  *
- * Return: Always success (0).
+ * Return: always success (0).
  */
 int main(int argc, char **argv)
 {
@@ -22,10 +23,16 @@ int main(int argc, char **argv)
 	{
 		while (--argc)
 		{
-			if (!(*argv[argc] >= 48 && *argv[argc] <= 57))
+			int i = 0;
+
+			while (argv[argc][i] != '\0')
 			{
-				printf("Error\n");
-				return (1);
+				if (!isdigit(argv[argc][i]))
+				{
+					printf("Error\n");
+					return (1);
+				}
+				i++;
 			}
 			sum += atoi(argv[argc]);
 		}
