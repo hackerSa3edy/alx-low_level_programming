@@ -11,6 +11,6 @@
 int main(int argc, char **argv)
 {
 	(void)argc;
-	puts(*argv);
+	printf("%s\n", *argv);
 	return (0);
 }
