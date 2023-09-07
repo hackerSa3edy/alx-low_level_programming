@@ -10,8 +10,8 @@
  * @len: len of string2 to be concatenated.
  *
  * Return: returned pointer shall point to a newly allocated space in memory,
- * 	which contains s1, followed by the first n bytes of s2,
- * 	and null terminated.
+ *	which contains s1, followed by the first n bytes of s2,
+ *	and null terminated.
  */
 char *string_nconcat(char *str1, char *str2, unsigned int len)
 {
