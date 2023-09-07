@@ -24,8 +24,12 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 		return (NULL);
 
 	temp_ptr = (char *)ptr;
-	for (index = 0; index < nmemb; index++)
+	index = 0;
+	while (index < (nmemb * size))
+	{
 		temp_ptr[index] = 0;
+		index++;
+	}
 
 	return (ptr);
 }
