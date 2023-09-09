@@ -54,7 +54,7 @@ char **strtow(char *string)
 	{
 		if (string[index] >= 33 && string[index] <= 126)
 		{
-			while (string[index] != 32 && string[index])
+			while (string[index] != ' ' && string[index])
 				index++;
 			words++;
 		}
@@ -67,7 +67,7 @@ char **strtow(char *string)
 	{
 		if (string[index] >= 33 && string[index] <= 126)
 		{
-			while (string[index] != ' ')
+			while (string[index] != ' ' && string[index])
 			{
 				index++;
 				sizeOfword++;
