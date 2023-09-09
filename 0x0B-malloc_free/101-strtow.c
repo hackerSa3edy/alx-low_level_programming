@@ -20,7 +20,7 @@ char **assignValues(char **arr, char *string)
 		if (string[index] >= 33 && string[index] <= 126)
 		{
 			innerIndex = 0;
-			while (string[index] != 32)
+			while (string[index] != ' ' && string[index])
 			{
 				arr[outerIndex][innerIndex] = string[index];
 				index++;
