@@ -142,9 +142,9 @@ char *sum_more(char *final_result, char *ptr, int size_1, int size_2)
 void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 {
 	char *ptr;
-	int index, index2, index3, extIndex, digit_mul, remainder, ptr_old_size;
+	int index, index2, index3, extIndex, digit_mul, remainder;
 
-	remainder = ptr_old_size = 0;
+	remainder = 0;
 	for (index = size_1 - 1; index >= 0; index--)
 	{
 		ptr = malloc(sizeof(char) * (size_2 + size_1 - 1 - index));
@@ -208,6 +208,59 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 }
 
 /**
+ * check_argv - ensure all numbers qualified for mul.
+ *
+ * @argc: num of arguments.
+ * @arg1: first argument.
+ * @arg2: second argument.
+ *
+ * Return: Nothing.
+ */
+void check_argv(int argc, char *arg1, char *arg2)
+{
+	int index, zeroNum;
+
+	zeroNum = 1;
+	if (argc != 3)
+	{
+		printf("Error\n");
+		exit(98);
+	}
+	for (index = 0; arg1[index]; index++)
+	{
+		if (arg1[index] < 48 || arg1[index] > 57)
+		{
+			printf("Error\n");
+			exit(98);
+		}
+		if (arg1[index] != '0')
+			zeroNum = 0;
+	}
+	if (zeroNum == 1)
+	{
+		printf("0\n");
+		exit(0);
+	}
+	zeroNum = 1;
+	for (index = 0; arg2[index]; index++)
+	{
+		if (arg2[index] < 48 || arg2[index] > 57)
+		{
+			printf("Error\n");
+			exit(98);
+		}
+		if (arg2[index] != '0')
+			zeroNum = 0;
+
+	}
+	if (zeroNum == 1)
+	{
+		printf("0\n");
+		exit(0);
+	}
+}
+
+/**
  * main - main program.
  *
  * @argc: number of arguments.
@@ -217,30 +270,10 @@ void *_calloc(unsigned int nmemb, unsigned int size)
  */
 int main(int argc, char **argv)
 {
-	int index, size_1, size_2;
+	int size_1, size_2;
 	char *num1, *num2, *final_result;
 
-	if (argc != 3)
-	{
-		printf("Error\n");
-		exit(98);
-	}
-	for (index = 0; argv[1][index]; index++)
-	{
-		if (argv[1][index] < 48 || argv[1][index] > 57)
-		{
-			printf("Error\n");
-			exit(98);
-		}
-	}
-	for (index = 0; argv[2][index]; index++)
-	{
-		if (argv[2][index] < 48 || argv[2][index] > 57)
-		{
-			printf("Error\n");
-			exit(98);
-		}
-	}
+	check_argv(argc, argv[1], argv[2]);
 
 	num1 = argv[1];
 	for (size_1 = 0; argv[1][size_1];)
