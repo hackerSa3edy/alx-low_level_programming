@@ -1,6 +1,24 @@
-#include <stdio.h>
 #include "main.h"
 #include <stdlib.h>
+
+/**
+ * free_grid - frees a 2 dimensional grid previously created.
+ *
+ * @grid: 2 dimensional array.
+ * @height: height of the array.
+ *
+ * Return: Nothing.
+ */
+void free_grid(int **grid, int height)
+{
+	int index;
+
+	for (index = 0; index < height; index++)
+	{
+		free(grid[index]);
+	}
+	free(grid);
+}
 
 /**
  * assignValues - assign values to the array.
@@ -53,7 +71,8 @@ char **strtow(char *string)
 	sizeOfword = wordIndex = words = 0;
 
 	for (index = 0; string[index]; index++)
-		if (string[index] != ' ' && (string[index + 1] == ' ' || string[index] == '\0' ))
+		if (string[index] != ' ' &&
+				(string[index + 1] == ' ' || string[index] == '\0'))
 			words++;
 
 	arr = malloc(sizeof(char *) * (words + 1));
@@ -74,7 +93,10 @@ char **strtow(char *string)
 			/* size of word + Null byte */
 			arr[wordIndex++] = malloc(sizeof(char) * (sizeOfword + 1));
 			if (arr[wordIndex - 1] == NULL)
+			{
+				free_grid(arr, wordIndex - 1);
 				return (NULL);
+			}
 		}
 		if (string[index] == '\0')
 			break;
