@@ -20,7 +20,7 @@ char **assignValues(char **arr, char *string)
 		if (string[index] >= 33 && string[index] <= 126)
 		{
 			innerIndex = 0;
-			while (string[index] != ' ' && string[index])
+			while (string[index] != ' ' && string[index] != '\0')
 			{
 				arr[outerIndex][innerIndex] = string[index];
 				index++;
@@ -29,6 +29,8 @@ char **assignValues(char **arr, char *string)
 			arr[outerIndex][innerIndex] = '\0';
 			outerIndex++;
 		}
+		if (string[index] == '\0')
+			break;
 	}
 	arr[outerIndex] = NULL;
 	return (arr);
@@ -49,16 +51,17 @@ char **strtow(char *string)
 	if (string == NULL || *string == '\0' ||
 			(string[0] == ' ' && string[1] == '\0'))
 		return (NULL);
-	sizeOfword = wordIndex = 0;
-	words = 1;
+	sizeOfword = wordIndex = words = 0;
 	for (index = 0; string[index]; index++)
 	{
 		if (string[index] >= 33 && string[index] <= 126)
 		{
-			while (string[index] != ' ' && string[index])
+			while (string[index] != ' ' && string[index] != '\0')
 				index++;
 			words++;
 		}
+		if (string[index] == '\0')
+			break;
 	}
 	arr = malloc(sizeof(char *) * words);
 	if (arr == NULL)
@@ -68,7 +71,7 @@ char **strtow(char *string)
 	{
 		if (string[index] >= 33 && string[index] <= 126)
 		{
-			while (string[index] != ' ' && string[index])
+			while (string[index] != ' ' && string[index] != '\0')
 			{
 				index++;
 				sizeOfword++;
@@ -78,7 +81,8 @@ char **strtow(char *string)
 			if (arr[wordIndex - 1] == NULL)
 				return (NULL);
 		}
+		if (string[index] == '\0')
+			break;
 	}
-	arr = assignValues(arr, string);
-	return (arr);
+	return (assignValues(arr, string));
 }
