@@ -79,9 +79,7 @@ void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 	{
 		ptr = malloc(sizeof(char) * (size_2 + size_1 - 1 - index));
 		if (ptr == NULL)
-		{
 			exit(98);
-		}
 		index3 = size_1 - index - 1;
 		extIndex = size_2 - 1;
 		for (index2 = size_2 + size_1 - 2 - index; index2 >= 0; index2--)
@@ -104,9 +102,7 @@ void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 			ptr = _realloc(ptr, size_2 + size_1 - 1 - index,
 					size_2 + size_1 - 1 - index + 2);
 			if (ptr == NULL)
-			{
 				exit(98);
-			}
 			ptr[size_2 + size_1 - 1 - index] = remainder + '0';
 			ptr[size_2 + size_1 - 1 - index + 1] = '\0';
 			remainder = 0;
@@ -116,9 +112,7 @@ void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 			ptr = _realloc(ptr, size_2 + size_1 - 1 - index,
 					size_2 + size_1 - 1 - index + 1);
 			if (ptr == NULL)
-			{
 				exit(98);
-			}
 			ptr[size_2 + size_1 - 1 - index] = '\0';
 		}
 		for (finalIndex = size_1 + size_2 - 1;
@@ -137,10 +131,8 @@ void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 		}
 		else
 			final_result[size_1 + size_2] = '\0';
-
 		free(ptr);
 	}
-
 	printf("%s\n", final_result + (final_result[0] == '0'));
 }
 /**
