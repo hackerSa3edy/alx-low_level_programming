@@ -63,7 +63,7 @@ char **strtow(char *string)
 		if (string[index] == '\0')
 			break;
 	}
-	arr = malloc(sizeof(char *) * words);
+	arr = malloc(sizeof(char *) * (words + 1));
 	if (arr == NULL)
 		return (NULL);
 
