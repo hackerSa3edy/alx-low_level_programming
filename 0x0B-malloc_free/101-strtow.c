@@ -48,17 +48,18 @@ char **strtow(char *string)
 
 	if (string == NULL || *string == '\0')
 		return (NULL);
-	words = sizeOfword = wordIndex = 0;
+	sizeOfword = wordIndex = 0;
+	words = 1;
 	for (index = 0; string[index]; index++)
 	{
 		if (string[index] >= 33 && string[index] <= 126)
 		{
-			while (string[index] != 32)
+			while (string[index] != 32 && string[index])
 				index++;
 			words++;
 		}
 	}
-	arr = malloc(sizeof(char *) * (words + 1));
+	arr = malloc(sizeof(char *) * words);
 	if (arr == NULL)
 		return (NULL);
 
