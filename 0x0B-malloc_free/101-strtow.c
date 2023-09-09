@@ -46,10 +46,11 @@ char **strtow(char *string)
 	int index, words, sizeOfword, wordIndex;
 	char **arr;
 
-	if (string == NULL || *string == '\0' || (string[0] == ' ' && string[1] == '\0'))
+	if (string == NULL || *string == '\0' ||
+			(string[0] == ' ' && string[1] == '\0'))
 		return (NULL);
 	sizeOfword = wordIndex = 0;
-	words = 0;
+	words = 1;
 	for (index = 0; string[index]; index++)
 	{
 		if (string[index] >= 33 && string[index] <= 126)
