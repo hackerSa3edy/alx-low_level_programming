@@ -58,6 +58,77 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 }
 
 /**
+ * mul_remainder - handle the remainder of 2 multiplied digits.
+ *
+ * @ptr: array of digits.
+ * @size_1: used in calc the digit index.
+ * @size_2: used in calc the digit index.
+ * @index: used in calc the digit index.
+ * @remainder: remainder.
+ *
+ * Return: return pointer to the edited array.
+ */
+char *mul_remainder(char *ptr, int size_1, int size_2,
+		int index, int *remainder)
+{
+	if (remainder != 0)
+	{
+		ptr = _realloc(ptr, size_2 + size_1 - 1 - index,
+			size_2 + size_1 - 1 - index + 2);
+		if (ptr == NULL)
+			exit(98);
+		ptr[size_2 + size_1 - 1 - index] = *remainder + '0';
+		ptr[size_2 + size_1 - 1 - index + 1] = '\0';
+		*remainder = 0;
+	}
+	else
+	{
+		ptr = _realloc(ptr, size_2 + size_1 - 1 - index,
+			size_2 + size_1 - 1 - index + 1);
+		if (ptr == NULL)
+			exit(98);
+		ptr[size_2 + size_1 - 1 - index] = '\0';
+	}
+	return (ptr);
+
+}
+
+/**
+ * sum_more - sum before the final result.
+ *
+ * @final_result: final result's array
+ * @ptr: mul array.
+ * @size_1: size of num1.
+ * @size_2: size of num2.
+ *
+ * Return: pointer to the final array.
+ */
+char *sum_more(char *final_result, char *ptr, int size_1, int size_2)
+{
+	int finalIndex, sum_remainder, sum;
+
+	sum_remainder = 0;
+	for (finalIndex = size_1 + size_2 - 1;
+		finalIndex >= 0 && ptr[size_1 + size_2 - finalIndex - 1]; finalIndex--)
+	{
+		sum = ((int)final_result[finalIndex] - '0') +
+			((int)ptr[size_1 + size_2 - finalIndex - 1] - '0') + sum_remainder;
+		sum_remainder = sum / 10;
+		sum = sum % 10;
+		final_result[finalIndex] = sum + '0';
+	}
+	if (sum_remainder != 0)
+	{
+		final_result[finalIndex] = sum_remainder + '0';
+		sum_remainder = 0;
+	}
+	else
+		final_result[size_1 + size_2] = '\0';
+
+	return (final_result);
+}
+
+/**
  * mul - multiply two huge numbers
  *
  * @num1: first number.
@@ -71,10 +142,9 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 {
 	char *ptr;
-	int index, index2, index3, extIndex, finalIndex,
-		digit_mul, remainder, ptr_old_size, sum_remainder, sum;
+	int index, index2, index3, extIndex, digit_mul, remainder, ptr_old_size;
 
-	remainder = ptr_old_size = sum_remainder = 0;
+	remainder = ptr_old_size = 0;
 	for (index = size_1 - 1; index >= 0; index--)
 	{
 		ptr = malloc(sizeof(char) * (size_2 + size_1 - 1 - index));
@@ -97,44 +167,13 @@ void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 			ptr[size_2 + size_1 - 2 - index - index2] = digit_mul + '0';
 			extIndex--;
 		}
-		if (remainder != 0)
-		{
-			ptr = _realloc(ptr, size_2 + size_1 - 1 - index,
-					size_2 + size_1 - 1 - index + 2);
-			if (ptr == NULL)
-				exit(98);
-			ptr[size_2 + size_1 - 1 - index] = remainder + '0';
-			ptr[size_2 + size_1 - 1 - index + 1] = '\0';
-			remainder = 0;
-		}
-		else
-		{
-			ptr = _realloc(ptr, size_2 + size_1 - 1 - index,
-					size_2 + size_1 - 1 - index + 1);
-			if (ptr == NULL)
-				exit(98);
-			ptr[size_2 + size_1 - 1 - index] = '\0';
-		}
-		for (finalIndex = size_1 + size_2 - 1;
-				finalIndex >= 0 && ptr[size_1 + size_2 - finalIndex - 1]; finalIndex--)
-		{
-			sum = ((int)final_result[finalIndex] - '0') +
-				((int)ptr[size_1 + size_2 - finalIndex - 1] - '0') + sum_remainder;
-			sum_remainder = sum / 10;
-			sum = sum % 10;
-			final_result[finalIndex] = sum + '0';
-		}
-		if (sum_remainder != 0)
-		{
-			final_result[finalIndex] = sum_remainder + '0';
-			sum_remainder = 0;
-		}
-		else
-			final_result[size_1 + size_2] = '\0';
+		ptr = mul_remainder(ptr, size_1, size_2, index, &remainder);
+		final_result = sum_more(final_result, ptr, size_1, size_2);
 		free(ptr);
 	}
 	printf("%s\n", final_result + (final_result[0] == '0'));
 }
+
 /**
  * _calloc - allocates memory for an array.
  *
@@ -186,7 +225,6 @@ int main(int argc, char **argv)
 		printf("Error\n");
 		exit(98);
 	}
-
 	for (index = 0; argv[1][index]; index++)
 	{
 		if (argv[1][index] < 48 || argv[1][index] > 57)
@@ -217,7 +255,6 @@ int main(int argc, char **argv)
 		exit(98);
 
 	mul(num1, size_1, num2, size_2, final_result);
-
 	free(final_result);
 	return (0);
 }
