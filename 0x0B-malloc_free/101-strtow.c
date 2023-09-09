@@ -9,7 +9,7 @@
  *
  * Return: Nothing.
  */
-void free_grid(int **grid, int height)
+void free_buffer(char **grid, int height)
 {
 	int index;
 
@@ -94,7 +94,7 @@ char **strtow(char *string)
 			arr[wordIndex++] = malloc(sizeof(char) * (sizeOfword + 1));
 			if (arr[wordIndex - 1] == NULL)
 			{
-				free_grid(arr, wordIndex - 1);
+				free_buffer(arr, wordIndex - 1);
 				return (NULL);
 			}
 		}
