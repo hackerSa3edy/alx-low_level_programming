@@ -80,8 +80,7 @@ void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 		ptr = malloc(sizeof(char) * (size_2 + size_1 - 1 - index));
 		if (ptr == NULL)
 		{
-			printf("No more memory\n");
-			exit(1);
+			exit(98);
 		}
 		index3 = size_1 - index - 1;
 		extIndex = size_2 - 1;
@@ -106,8 +105,7 @@ void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 					size_2 + size_1 - 1 - index + 2);
 			if (ptr == NULL)
 			{
-				printf("No more memory\n");
-				exit(1);
+				exit(98);
 			}
 			ptr[size_2 + size_1 - 1 - index] = remainder + '0';
 			ptr[size_2 + size_1 - 1 - index + 1] = '\0';
@@ -119,8 +117,7 @@ void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 					size_2 + size_1 - 1 - index + 1);
 			if (ptr == NULL)
 			{
-				printf("No more memory\n");
-				exit(1);
+				exit(98);
 			}
 			ptr[size_2 + size_1 - 1 - index] = '\0';
 		}
@@ -145,7 +142,6 @@ void mul(char *num1, int size_1, char *num2, int size_2, char *final_result)
 	}
 
 	printf("%s\n", final_result + (final_result[0] == '0'));
-	free(final_result);
 }
 /**
  * _calloc - allocates memory for an array.
@@ -225,7 +221,11 @@ int main(int argc, char **argv)
 		size_2++;
 
 	final_result = _calloc(size_1 + size_2 + 1, sizeof(char));
+	if (final_result == NULL)
+		exit(98);
+
 	mul(num1, size_1, num2, size_2, final_result);
 
+	free(final_result);
 	return (0);
 }
