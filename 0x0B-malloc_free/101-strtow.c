@@ -98,6 +98,7 @@ char **strtow(char *string)
 				free_buffer(arr, wordIndex - 1);
 				return (NULL);
 			}
+			sizeOfword = 0;
 		}
 		if (string[index] == '\0')
 			break;
