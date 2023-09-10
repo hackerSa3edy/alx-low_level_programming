@@ -91,7 +91,6 @@ char **strtow(char *string)
 				index++;
 				sizeOfword++;
 			}
-			printf("Index: %i, Size of word: %i\n", wordIndex, sizeOfword + 1);
 			/* size of word + Null byte */
 			arr[wordIndex++] = malloc(sizeof(char) * (sizeOfword + 1));
 			if (arr[wordIndex - 1] == NULL)
