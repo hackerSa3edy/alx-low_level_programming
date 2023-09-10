@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 /**
@@ -75,7 +76,7 @@ char **strtow(char *string)
 				(string[index + 1] == ' ' || string[index] == '\0'))
 			words++;
 
-	arr = malloc(sizeof(char *) * (words + 1));
+	arr = malloc(sizeof(char *) * (words + 2));
 	if (arr == NULL || words == 0)
 	{
 		free(arr);
@@ -90,6 +91,7 @@ char **strtow(char *string)
 				index++;
 				sizeOfword++;
 			}
+			printf("Index: %i, Size of word: %i\n", wordIndex, sizeOfword + 1);
 			/* size of word + Null byte */
 			arr[wordIndex++] = malloc(sizeof(char) * (sizeOfword + 1));
 			if (arr[wordIndex - 1] == NULL)
