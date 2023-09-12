@@ -11,18 +11,18 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-    int size = 0;
+	int size = 0;
 
-    while (*src != '\0')
-    {
-            *dest = *src;
-            dest = dest + 1;
-            src = src + 1;
-            size = size + sizeof(*src);
-    }
-    *dest = '\0';
-    dest = dest - size;
-    return (dest);
+	while (*src != '\0')
+	{
+		*dest = *src;
+		dest = dest + 1;
+		src = src + 1;
+		size = size + sizeof(*src);
+	}
+	*dest = '\0';
+	dest = dest - size;
+	return (dest);
 }
 
 /**
@@ -34,16 +34,16 @@ char *_strcpy(char *dest, char *src)
  */
 int _strlen(char *s)
 {
-    char *ptr;
-    int size = 0;
+	char *ptr;
+	int size = 0;
 
-    ptr = s;
-    while (*ptr != '\0')
-    {
-            size = sizeof(*ptr) + size;
-            ptr = ptr + 1;
-    }
-    return (size);
+	ptr = s;
+	while (*ptr != '\0')
+	{
+		size = sizeof(*ptr) + size;
+		ptr = ptr + 1;
+	}
+	return (size);
 }
 
 /**
@@ -80,6 +80,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	n_dog->owner = malloc(sizeof(char) * (owner_len + 1));
 	if (n_dog->owner == NULL)
 	{
+		free(n_dog->owner);
 		free(n_dog);
 		return (NULL);
 	}
