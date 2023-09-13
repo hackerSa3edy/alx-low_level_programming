@@ -10,6 +10,6 @@
  */
 void print_name(char *name, void (*print_n)(char *))
 {
-	if (name != NULL)
+	if (name != NULL && print_n != NULL)
 		print_n(name);
 }
