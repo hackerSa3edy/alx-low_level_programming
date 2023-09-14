@@ -4,58 +4,71 @@
 /**
  * print_char - prints a char.
  *
- * @c: char
+ * @arg: va_list arg
  *
  * Return: Nothing
  */
 void print_char(va_list arg)
 {
 	char c = va_arg(arg, int);
+
 	printf("%c", c);
 }
 
 /**
  * print_int - prints a integer
  *
- * @i: integer
+ * @arg: va_list arg
  *
  * Return: Nothing
  */
 void print_int(va_list arg)
 {
 	int i = va_arg(arg, int);
+
 	printf("%i", i);
 }
 
 /**
  * print_float - prints a float
  *
- * @f: float.
+ * @arg: va_list arg
  *
  * Return: Nothing
  */
 void print_float(va_list arg)
 {
 	float f = va_arg(arg, double);
+
 	printf("%f", f);
 }
 
 /**
  * print_str - prints a string
  *
- * @str: string
+ * @arg: va_list arg
  *
  * Return: Nothing
  */
 void print_str(va_list arg)
 {
 	char *str = va_arg(arg, char *);
+
 	if (str == NULL)
+	{
 		printf("(nil)");
-	else
-		printf("%s", str);
+		return;
+	}
+	printf("%s", str);
 }
 
+/**
+ * print_all - prints all data types variables
+ *
+ * @format: allowed formats.
+ *
+ * Return: Nothing.
+ */
 void print_all(const char * const format, ...)
 {
 	int index = 0, index2 = 0;

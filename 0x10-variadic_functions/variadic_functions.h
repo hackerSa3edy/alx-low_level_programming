@@ -7,7 +7,14 @@ void print_numbers(const char *, const unsigned int, ...);
 void print_strings(const char *, const unsigned int, ...);
 void print_all(const char * const, ...);
 
-typedef struct {
+/**
+ * struct formats_struct - allowed formats to be printed.
+ *
+ * @type: points to the type char
+ * @func: points to the print func
+ */
+typedef struct formats_struct
+{
 	char *type;
 	void (*func)(va_list arg);
 } format_func;
