@@ -72,6 +72,7 @@ void print_str(va_list arg)
 void print_all(const char * const format, ...)
 {
 	int index = 0, index2 = 0;
+	char *sp = "";
 	format_func formats[] = {
 		{"c", print_char},
 		{"i", print_int},
@@ -88,8 +89,9 @@ void print_all(const char * const format, ...)
 		{
 			if (format[index] == *formats[index2].type)
 			{
+				printf("%s", sp);
 				formats[index2].func(ptr);
-				printf(", ");
+				sp = ", ";
 			}
 			index2++;
 		}
