@@ -9,7 +9,8 @@
  */
 int sum_them_all(const unsigned int n, ...)
 {
-	unsigned int index, result = 0;
+	unsigned int index;
+	int result = 0;
 	va_list ptr;
 
 	if (n == 0)
