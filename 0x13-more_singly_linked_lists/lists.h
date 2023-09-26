@@ -5,6 +5,17 @@
 #include <stdio.h>
 
 /**
+ * struct listptr - struct for pointers
+ *
+ * @ptr: address to be stored.
+ * @next: next node.
+ */
+typedef struct listptr
+{
+	void *ptr;
+	struct listptr *next;
+} listptr_t;
+/**
  * struct listint_s - singly linked list.
  *
  * @n: integer.
@@ -28,5 +39,6 @@ int sum_listint(listint_t *);
 listint_t *insert_nodeint_at_index(listint_t **, unsigned int, int);
 int delete_nodeint_at_index(listint_t **, unsigned int);
 listint_t *reverse_listint(listint_t **);
+size_t print_listint_safe(const listint_t *);
 
 #endif /* LISTS_H */
