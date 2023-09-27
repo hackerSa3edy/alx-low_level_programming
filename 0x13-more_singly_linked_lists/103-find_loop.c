@@ -21,7 +21,6 @@ listint_t *find_listint_loop(listint_t *head)
 	{
 		temp1 = temp1->next;
 		temp2 = (temp2->next)->next;
-		printf("not here\n");
 		if ((void *)temp1 == (void *)temp2)
 		{
 			temp1 = head;
