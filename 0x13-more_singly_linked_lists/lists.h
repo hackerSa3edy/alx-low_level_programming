@@ -44,5 +44,6 @@ size_t free_listint_safe(listint_t **);
 int check_loop(listptr_t **list, const void *node);
 listptr_t *add_nodeptr(listptr_t **head, void *ptr);
 void free_listptr(listptr_t *head);
+listint_t *find_listint_loop(listint_t *);
 
 #endif /* LISTS_H */
