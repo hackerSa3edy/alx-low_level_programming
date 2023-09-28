@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * git_bit - returns the value of a bit at a given index.
+ * get_bit - returns the value of a bit at a given index.
  *
  * @decimal: decimal number.
  * @index: index of the bit.
@@ -14,15 +14,16 @@ int get_bit(unsigned long int decimal, unsigned int index)
 	unsigned long int tempInt = decimal;
 
 	if (decimal == 0 && index == 0)
-	{
 		return (0);
-	}
+	else if (decimal == 0 && index != 0)
+		return (-1);
+
 	while (tempInt != 0)
 	{
 		tempInt = tempInt >> 1;
 		len++;
 	}
-	
+
 	if (len < index)
 		return (-1);
 
