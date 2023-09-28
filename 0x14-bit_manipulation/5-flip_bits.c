@@ -11,7 +11,8 @@
  */
 unsigned int flip_bits(unsigned long int num1, unsigned long int num2)
 {
-	unsigned int num_of_bits = 0, mediator = 0, bit = 0;
+	unsigned int num_of_bits = 0, bit = 0;
+	unsigned long int mediator = 0;
 
 	mediator = num1 ^ num2;
 	while (mediator != 0)
