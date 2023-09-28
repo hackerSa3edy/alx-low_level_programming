@@ -10,19 +10,7 @@
  */
 int get_bit(unsigned long int decimal, unsigned int index)
 {
-	unsigned int len = 0;
-	unsigned long int tempInt = decimal;
-
-	if (decimal == 0 && index != 0)
-		return (-1);
-
-	while (tempInt != 0)
-	{
-		tempInt = tempInt >> 1;
-		len++;
-	}
-
-	if (index > len)
+	if (index > (sizeof(decimal) * 8))
 		return (-1);
 
 	decimal = decimal >> index;
