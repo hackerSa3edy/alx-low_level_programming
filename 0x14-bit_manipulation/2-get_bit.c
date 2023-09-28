@@ -10,12 +10,10 @@
  */
 int get_bit(unsigned long int decimal, unsigned int index)
 {
-	unsigned int digit = 1, bitPos = 0, len = 0;
+	unsigned int len = 0;
 	unsigned long int tempInt = decimal;
 
-	if (decimal == 0 && index == 0)
-		return (0);
-	else if (decimal == 0 && index != 0)
+	if (decimal == 0 && index != 0)
 		return (-1);
 
 	while (tempInt != 0)
@@ -24,14 +22,10 @@ int get_bit(unsigned long int decimal, unsigned int index)
 		len++;
 	}
 
-	if (len < index)
+	if (index > len)
 		return (-1);
 
-	while (bitPos != index)
-	{
-		decimal = decimal >> 1;
-		bitPos++;
-	}
+	decimal = decimal >> index;
 
-	return (digit & decimal);
+	return (1 & decimal);
 }
