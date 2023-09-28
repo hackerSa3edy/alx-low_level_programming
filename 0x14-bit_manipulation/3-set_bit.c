@@ -15,7 +15,7 @@ int set_bit(unsigned long int *decimal, unsigned int index)
 	if (index > (sizeof(decimal) * 8))
 		return (-1);
 
-	if (1 & (*decimal >> index) == 0)
+	if ((1 & (*decimal >> index)) == 0)
 		*decimal = *decimal + convert(2, index);
 
 	return (1);
