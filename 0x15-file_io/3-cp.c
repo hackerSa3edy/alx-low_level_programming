@@ -33,7 +33,7 @@ int main(int argc, char **argv)
  */
 ssize_t cp(const char *file_from, const char *file_to)
 {
-	int f_from_fd, fread, f_to_fd, perm, flags;
+	int f_from_fd, fread, fwrite, f_to_fd, perm, flags;
 	char *buffer;
 
 	flags = O_TRUNC | O_WRONLY | O_CREAT;
@@ -57,8 +57,20 @@ ssize_t cp(const char *file_from, const char *file_to)
 	fread = read(f_from_fd, buffer, BUFFER_SIZE);
 	while (fread != 0)
 	{
-		write(f_to_fd, buffer, fread);
+		fwrite = write(f_to_fd, buffer, fread);
+		if (fwrite < 0)
+		{
+			dprintf(2, "Error: Can't write to %s\n", file_to);
+			exit(99);
+		}
+
 		fread = read(f_from_fd, buffer, BUFFER_SIZE);
+		if (fread < 0)
+		{
+			dprintf(2, "Error: Can't read from file %s\n", file_from);
+			exit(98);
+		}
+
 	}
 
 	free(buffer);
