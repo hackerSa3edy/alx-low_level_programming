@@ -1,6 +1,8 @@
 #include "main.h"
 
 ssize_t cp(const char *file_from, const char *file_to);
+void writeErr(int fwrite, const char *file_to);
+void readErr(int fread, const char *file_from);
 
 /**
  * main - copies the content of a file to another file.
@@ -45,20 +47,20 @@ ssize_t cp(const char *file_from, const char *file_to)
 	perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
 	f_from_fd = open(file_from, O_RDONLY);
-	readErr(f_from_fd);
+	readErr(f_from_fd, file_from);
 
 	f_to_fd = open(file_to, flags, perm);
-	writeErr(f_to_fd);
+	writeErr(f_to_fd, file_to);
 
 	fread = read(f_from_fd, buffer, BUFFER_SIZE);
-	readErr(fread);
+	readErr(fread, file_from);
 	while (fread > 0)
 	{
 		fwrite = write(f_to_fd, buffer, fread);
-		writeErr(fwrite);
+		writeErr(fwrite, file_to);
 	
 		fread = read(f_from_fd, buffer, BUFFER_SIZE);
-		readErr(fread);
+		readErr(fread, file_from);
 	}
 
 	if (close(f_from_fd) < 0)
@@ -79,10 +81,11 @@ ssize_t cp(const char *file_from, const char *file_to)
  * writeErr - handle write errors.
  *
  * @fwrite: fd handler.
+ * @file_to: file name.
  *
  * Return: Nothing.
  */
-void writeErr(int fwrite)
+void writeErr(int fwrite, const char *file_to)
 {
 	if (fwrite < 0)
 	{
@@ -95,10 +98,11 @@ void writeErr(int fwrite)
  * readErr - handle read errors.
  *
  * @fread: fd handler.
+ * @file_from: file name.
  *
  * Return: Nothing.
  */
-void (readErr(int fread))
+void readErr(int fread, const char *file_from)
 {
 	if (fread < 0)
 	{
