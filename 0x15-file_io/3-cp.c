@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 ssize_t cp(const char *file_from, const char *file_to)
 {
 	int f_from_fd, fread, fwrite, f_to_fd, perm, flags;
-	char *buffer;
+	char buffer[BUFFER_SIZE];
 
 	if (file_from == NULL || file_to == NULL)
 	{
@@ -45,8 +45,7 @@ ssize_t cp(const char *file_from, const char *file_to)
 	perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
 	f_from_fd = open(file_from, O_RDONLY);
-	buffer = malloc(BUFFER_SIZE);
-	if (f_from_fd < 0 || buffer == NULL)
+	if (f_from_fd < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		exit(98);
@@ -78,7 +77,6 @@ ssize_t cp(const char *file_from, const char *file_to)
 
 	}
 
-	free(buffer);
 	if (close(f_from_fd) < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", f_from_fd);
