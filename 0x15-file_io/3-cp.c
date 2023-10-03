@@ -34,7 +34,7 @@ int main(int argc, char **argv)
  * @file_from: arguments values.
  * @file_to: number of arguments.
  *
- * Return: (1) always success, otherwise EXIT_CODE.
+ * Return: (0) always success, otherwise EXIT_CODE.
  */
 ssize_t cp(const char *file_from, const char *file_to)
 {
@@ -45,36 +45,20 @@ ssize_t cp(const char *file_from, const char *file_to)
 	perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
 	f_from_fd = open(file_from, O_RDONLY);
-	if (f_from_fd < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		exit(98);
-	}
+	readErr(f_from_fd);
 
 	f_to_fd = open(file_to, flags, perm);
-	if (f_to_fd < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		exit(99);
-	}
+	writeErr(f_to_fd);
 
 	fread = read(f_from_fd, buffer, BUFFER_SIZE);
+	readErr(fread);
 	while (fread > 0)
 	{
 		fwrite = write(f_to_fd, buffer, fread);
-		if (fwrite < 0)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-			exit(99);
-		}
-
+		writeErr(fwrite);
+	
 		fread = read(f_from_fd, buffer, BUFFER_SIZE);
-		if (fread < 0)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-			exit(98);
-		}
-
+		readErr(fread);
 	}
 
 	if (close(f_from_fd) < 0)
@@ -88,5 +72,37 @@ ssize_t cp(const char *file_from, const char *file_to)
 		exit(100);
 	}
 
-	return (1);
+	return (0);
+}
+
+/**
+ * writeErr - handle write errors.
+ *
+ * @fwrite: fd handler.
+ *
+ * Return: Nothing.
+ */
+void writeErr(int fwrite)
+{
+	if (fwrite < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+		exit(99);
+	}
+}
+
+/**
+ * readErr - handle read errors.
+ *
+ * @fread: fd handler.
+ *
+ * Return: Nothing.
+ */
+void (readErr(int fread))
+{
+	if (fread < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+		exit(98);
+	}
 }
