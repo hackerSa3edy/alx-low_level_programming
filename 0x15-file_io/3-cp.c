@@ -36,6 +36,11 @@ ssize_t cp(const char *file_from, const char *file_to)
 	int f_from_fd, fread, fwrite, f_to_fd, perm, flags;
 	char *buffer;
 
+	if (file_from == NULL || file_to == NULL)
+	{
+		exit(-1);
+	}
+
 	flags = O_TRUNC | O_WRONLY | O_CREAT;
 	perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
