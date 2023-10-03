@@ -41,8 +41,7 @@ ssize_t cp(const char *file_from, const char *file_to)
 
 	f_from_fd = open(file_from, O_RDONLY);
 	buffer = malloc(BUFFER_SIZE);
-	fread = read(f_from_fd, buffer, BUFFER_SIZE);
-	if (f_from_fd < 0 || buffer == NULL || fread < 0)
+	if (f_from_fd < 0 || buffer == NULL)
 	{
 		dprintf(2, "Error: Can't read from file %s\n", file_from);
 		exit(98);
@@ -55,6 +54,7 @@ ssize_t cp(const char *file_from, const char *file_to)
 		exit(99);
 	}
 
+	fread = read(f_from_fd, buffer, BUFFER_SIZE);
 	while (fread != 0)
 	{
 		write(f_to_fd, buffer, fread);
