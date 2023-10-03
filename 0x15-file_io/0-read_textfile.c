@@ -2,7 +2,7 @@
 
 /**
  * read_textfile - reads a text file and prints it to the
- * 	POSIX standard output.
+ *	POSIX standard output.
  *
  * @filename: file name.
  * @letters: size of buffer to be read.
@@ -32,5 +32,5 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	close(fd);
 	free(buffer);
-	return (fd_rd);
+	return (letters);
 }
