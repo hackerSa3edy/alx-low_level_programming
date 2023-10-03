@@ -18,9 +18,14 @@ int main(int argc, char **argv)
 		exit(97);
 	}
 
+	if (argv[1] == NULL || argv[2] == NULL)
+	{
+		return (1);
+	}
+
 	cp(argv[1], argv[2]);
 
-	return (1);
+	return (0);
 }
 
 /**
@@ -35,11 +40,6 @@ ssize_t cp(const char *file_from, const char *file_to)
 {
 	int f_from_fd, fread, fwrite, f_to_fd, perm, flags;
 	char buffer[BUFFER_SIZE];
-
-	if (file_from == NULL || file_to == NULL)
-	{
-		exit(-1);
-	}
 
 	flags = O_TRUNC | O_WRONLY | O_CREAT;
 	perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
