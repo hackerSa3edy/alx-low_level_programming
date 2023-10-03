@@ -60,7 +60,7 @@ ssize_t cp(const char *file_from, const char *file_to)
 	}
 
 	fread = read(f_from_fd, buffer, BUFFER_SIZE);
-	while (fread != 0)
+	while (fread > 0)
 	{
 		fwrite = write(f_to_fd, buffer, fread);
 		if (fwrite < 0)
