@@ -58,7 +58,7 @@ ssize_t cp(const char *file_from, const char *file_to)
 	{
 		fwrite = write(f_to_fd, buffer, fread);
 		writeErr(fwrite, file_to);
-	
+
 		fread = read(f_from_fd, buffer, BUFFER_SIZE);
 		readErr(fread, file_from);
 	}
