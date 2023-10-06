@@ -1,7 +1,7 @@
 #include "main.h"
 #include <elf.h>
 
-void checkELF(unsigned char *e_ident);
+void checkELF(unsigned char *e_ident, Elf64_Ehdr *header);
 void printMagic(unsigned char *e_ident);
 void printClass(unsigned char *e_ident);
 void printData(unsigned char *e_ident);
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 		closeELF(fd);
 		exit(98);
 	}
-	lseek(fd, 0, SEEK_SET);
+
 	fd_read = read(fd, header, sizeof(Elf64_Ehdr));
 	if (fd_read < 0)
 	{
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 		exit(98);
 	}
 
-	checkELF(header->e_ident);
+	checkELF(header->e_ident, header);
 	dprintf(STDOUT_FILENO, "ELF Header:\n");
 	printMagic(header->e_ident);
 	printClass(header->e_ident);
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
  *
  * Return: Nothing.
  */
-void checkELF(unsigned char *e_ident)
+void checkELF(unsigned char *e_ident, Elf64_Ehdr *header)
 {
 	if (!(e_ident[EI_MAG0] == 0x7F &&
 		e_ident[EI_MAG1] == 'E' &&
@@ -84,6 +84,7 @@ void checkELF(unsigned char *e_ident)
 	{
 		dprintf(STDERR_FILENO,
 				"Error: Not an ELF file - it has the wrong magic bytes at the start\n");
+		free(header);
 		exit(98);
 	}
 }
