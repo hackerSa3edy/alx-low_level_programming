@@ -1,7 +1,7 @@
 #include "main.h"
 #include <elf.h>
 
-void checkELF(unsigned char *e_ident, Elf64_Ehdr *header, int fd);
+void checkELF(unsigned char *e_ident, Elf32_Ehdr *header, int fd);
 void printMagic(unsigned char *e_ident);
 void printClass(unsigned char *e_ident);
 void printData(unsigned char *e_ident);
@@ -23,10 +23,14 @@ void closeELF(int elf);
  */
 int main(int argc, char **argv)
 {
-	Elf64_Ehdr *header;
+	Elf32_Ehdr *header;
 	int fd, fd_read;
 
-	(void) argc;
+	if (argc != 2)
+	{
+		dprintf(STDOUT_FILENO, "Usage: %s ELF_FILE\n", argv[0]);
+		exit(98);
+	}
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
@@ -35,7 +39,7 @@ int main(int argc, char **argv)
 		exit(98);
 	}
 
-	header = malloc(sizeof(Elf64_Ehdr));
+	header = malloc(sizeof(Elf32_Ehdr));
 	if (header == NULL)
 	{
 		dprintf(STDERR_FILENO, "%s: Can't read the file %s\n", argv[0], argv[1]);
@@ -43,7 +47,7 @@ int main(int argc, char **argv)
 		exit(98);
 	}
 
-	fd_read = read(fd, header, sizeof(Elf64_Ehdr));
+	fd_read = read(fd, header, sizeof(Elf32_Ehdr));
 	if (fd_read < 0)
 	{
 		printf("%s: Can't read the file %s\n", argv[0], argv[1]);
@@ -77,7 +81,7 @@ int main(int argc, char **argv)
  *
  * Return: Nothing.
  */
-void checkELF(unsigned char *e_ident, Elf64_Ehdr *header, int fd)
+void checkELF(unsigned char *e_ident, Elf32_Ehdr *header, int fd)
 {
 	if (!(e_ident[EI_MAG0] == 0x7F &&
 		e_ident[EI_MAG1] == 'E' &&
