@@ -9,7 +9,7 @@ void printVersion(unsigned char *e_ident);
 void printOSABI(unsigned char *e_ident);
 void printABIVERSION(unsigned char *e_ident);
 void printType(unsigned int e_type, unsigned char *e_ident);
-void printEntryPoint(char *ptr);
+void printEntryPoint(unsigned char *ptr);
 void closeELF(int elf);
 
 /**
@@ -300,7 +300,7 @@ void printType(unsigned int e_type, unsigned char *e_ident)
  *
  * Return: Nothing.
  */
-void printEntryPoint(char *ptr)
+void printEntryPoint(unsigned char *ptr)
 {
 	int i;
 	int begin;
