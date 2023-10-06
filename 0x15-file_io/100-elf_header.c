@@ -9,7 +9,7 @@ void printVersion(unsigned char *e_ident);
 void printOSABI(unsigned char *e_ident);
 void printABIVERSION(unsigned char *e_ident);
 void printType(unsigned int e_type, unsigned char *e_ident);
-void printEntryPoint(unsigned long int e_type, unsigned char *e_ident);
+void printEntryPoint(char *ptr);
 void closeELF(int elf);
 
 /**
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 	printOSABI(header->e_ident);
 	printABIVERSION(header->e_ident);
 	printType(header->e_type, header->e_ident);
-	printEntryPoint(header->e_entry, header->e_ident);
+	printEntryPoint(header->e_ident);
 
 	free(header);
 	closeELF(fd);
@@ -274,7 +274,7 @@ void printType(unsigned int e_type, unsigned char *e_ident)
 	int len = sizeof(type);
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
-		e_type = e_type >> 8;
+		e_type = e_ident[17];
 
 	while (index < len)
 	{
@@ -300,22 +300,44 @@ void printType(unsigned int e_type, unsigned char *e_ident)
  *
  * Return: Nothing.
  */
-void printEntryPoint(unsigned long int e_entry, unsigned char *e_ident)
+void printEntryPoint(char *ptr)
 {
-	if (e_ident[EI_DATA] == ELFDATA2MSB)
+	int i;
+	int begin;
+	char sys;
+
+	dprintf(STDOUT_FILENO, "  Entry point address:               0x");
+
+	sys = ptr[4] + '0';
+	if (sys == '1')
 	{
-		e_entry = ((e_entry << 8) & 0xFF00FF00) | ((e_entry >> 8) & 0xFF00FF);
-		e_entry = (e_entry << 16) | (e_entry >> 16);
+		begin = 26;
+		dprintf(STDOUT_FILENO, "80");
+		for (i = begin; i >= 22; i--)
+		{
+			if (ptr[i] > 0)
+				dprintf(STDOUT_FILENO, "%x", ptr[i]);
+			else if (ptr[i] < 0)
+				dprintf(STDOUT_FILENO, "%x", 256 + ptr[i]);
+		}
+		if (ptr[7] == 6)
+			dprintf(STDOUT_FILENO, "00");
 	}
 
-	if (e_ident[EI_CLASS] == ELFCLASS32)
-		dprintf(STDOUT_FILENO,
-				"  Entry point address:               %#x\n",
-				(unsigned int)e_entry);
-	else
-		dprintf(STDOUT_FILENO,
-				"  Entry point address:               %#lx\n",
-				e_entry);
+	if (sys == '2')
+	{
+		begin = 26;
+		for (i = begin; i > 23; i--)
+		{
+			if (ptr[i] >= 0)
+				dprintf(STDOUT_FILENO, "%02x", ptr[i]);
+
+			else if (ptr[i] < 0)
+				dprintf(STDOUT_FILENO, "%02x", 256 + ptr[i]);
+
+		}
+	}
+	dprintf(STDOUT_FILENO, "\n");
 }
 
 /**
