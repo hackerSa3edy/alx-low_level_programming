@@ -91,7 +91,11 @@ void checkELF(unsigned char *e_ident, Elf64_Ehdr *header, int fd)
 		exit(98);
 	}
 	if (e_ident[EI_CLASS] != ELFCLASS32 && e_ident[EI_CLASS] != ELFCLASS64)
+	{
+		free(header);
+		close(fd);
 		exit(98);
+	}
 }
 
 /**
