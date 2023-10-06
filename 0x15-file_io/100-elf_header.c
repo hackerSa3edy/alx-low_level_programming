@@ -26,11 +26,7 @@ int main(int argc, char **argv)
 	Elf64_Ehdr *header;
 	int fd, fd_read;
 
-	if (argc != 2)
-	{
-		dprintf(STDERR_FILENO, "usage: %s ELF_FILE\n", argv[0]);
-		exit(98);
-	}
+	(void) argc;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
