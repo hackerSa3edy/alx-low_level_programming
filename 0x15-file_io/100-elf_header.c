@@ -8,7 +8,7 @@ void printData(unsigned char *e_ident);
 void printVersion(unsigned char *e_ident);
 void printOSABI(unsigned char *e_ident);
 void printABIVERSION(unsigned char *e_ident);
-void printType(unsigned long int e_type, unsigned char *e_ident);
+void printType(unsigned int e_type, unsigned char *e_ident);
 void printEntryPoint(unsigned long int e_type, unsigned char *e_ident);
 void closeELF(int elf);
 
@@ -158,7 +158,7 @@ void printData(unsigned char *e_ident)
 	elfData data[] = {
 		{ELFDATANONE, "none"},
 		{ELFDATA2LSB, "2's complement, little endian"},
-		{ELFDATA2MSB, "2's complement, big-endian"},
+		{ELFDATA2MSB, "2's complement, big endian"},
 	};
 	int index = 0;
 	int len = sizeof(data);
@@ -174,7 +174,7 @@ void printData(unsigned char *e_ident)
 		}
 		index++;
 	}
-	dprintf(STDOUT_FILENO, "<unknown: %x>\n", e_ident[EI_DATA]);
+	dprintf(STDOUT_FILENO, "<unknown: %x>\n", e_ident[EI_CLASS]);
 }
 
 /**
@@ -186,17 +186,16 @@ void printData(unsigned char *e_ident)
  */
 void printVersion(unsigned char *e_ident)
 {
-	if (e_ident[EI_VERSION] == EV_NONE)
-	{
-		dprintf(STDOUT_FILENO,
-				"  Version:                           Invalid version\n");
-	}
-	else if (e_ident[EI_VERSION] == EV_CURRENT)
+	if (e_ident[EI_VERSION] == EV_CURRENT)
 	{
 		dprintf(STDOUT_FILENO,
 				"  Version:                           %i (current)\n",
 				e_ident[EI_VERSION]);
+				return;
 	}
+	dprintf(STDOUT_FILENO,
+				"  Version:                           %i\n",
+				e_ident[EI_VERSION]);
 }
 
 /**
@@ -260,12 +259,12 @@ void printABIVERSION(unsigned char *e_ident)
  *
  * Return: Nothing.
  */
-void printType(unsigned long int e_type, unsigned char *e_ident)
+void printType(unsigned int e_type, unsigned char *e_ident)
 {
 	elfType type[] = {
 		{ET_NONE, "NONE (None)"},
 		{ET_REL, "REL (Relocatable file)"},
-		{ET_EXEC, "EXEC (Ececutable file)"},
+		{ET_EXEC, "EXEC (Executable file)"},
 		{ET_DYN, "DYN (Shared object file)"},
 		{ET_CORE, "CORE (Core file)"},
 	};
@@ -286,7 +285,7 @@ void printType(unsigned long int e_type, unsigned char *e_ident)
 		}
 		index++;
 	}
-	dprintf(STDOUT_FILENO, "<unknown: %lx>\n", e_type);
+	dprintf(STDOUT_FILENO, "<unknown: %x>\n", e_type);
 }
 
 /**
@@ -299,6 +298,12 @@ void printType(unsigned long int e_type, unsigned char *e_ident)
  */
 void printEntryPoint(unsigned long int e_entry, unsigned char *e_ident)
 {
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+	{
+		e_entry = ((e_entry << 8) & 0xFF00FF00) | ((e_entry >> 8) & 0xFF00FF);
+		e_entry = (e_entry << 16) | (e_entry >> 16);
+	}
+
 	if (e_ident[EI_CLASS] == ELFCLASS32)
 		dprintf(STDOUT_FILENO,
 				"  Entry point address:               %#x\n",

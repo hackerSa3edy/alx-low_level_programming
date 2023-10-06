@@ -34,7 +34,7 @@ typedef struct ElfABI
 
 typedef struct ElfType
 {
-	unsigned long int typeByte;
+	unsigned int typeByte;
 	char typeString[100];
 } elfType;
 
