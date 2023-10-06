@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 		closeELF(fd);
 		exit(98);
 	}
-
+	lseek(fd, 0, SEEK_SET);
 	fd_read = read(fd, header, sizeof(Elf64_Ehdr));
 	if (fd_read < 0)
 	{
@@ -267,7 +267,7 @@ void printType(unsigned int e_type, unsigned char *e_ident)
 	int len = sizeof(type);
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
-		e_type = e_ident[17];
+		e_type = e_type >> 8;
 
 	while (index < len)
 	{
