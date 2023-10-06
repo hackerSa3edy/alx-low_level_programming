@@ -267,7 +267,7 @@ void printType(unsigned int e_type, unsigned char *e_ident)
 	int len = sizeof(type);
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
-		e_type = e_type >> 8;
+		e_type = e_ident[17];
 
 	while (index < len)
 	{
