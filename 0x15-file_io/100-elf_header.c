@@ -170,7 +170,6 @@ void printData(unsigned char *e_ident)
 		}
 		index++;
 	}
-	dprintf(STDOUT_FILENO, "<unknown: %x>\n", e_ident[EI_DATA]);
 }
 
 /**
