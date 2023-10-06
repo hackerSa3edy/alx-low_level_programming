@@ -125,7 +125,6 @@ void printMagic(unsigned char *e_ident)
 void printClass(unsigned char *e_ident)
 {
 	elfClasses classes[] = {
-		{ELFCLASSNONE, "none"},
 		{ELFCLASS32, "ELF32"},
 		{ELFCLASS64, "ELF64"},
 	};
@@ -143,7 +142,6 @@ void printClass(unsigned char *e_ident)
 		}
 		index++;
 	}
-	dprintf(STDOUT_FILENO, "  Class:                             <unknown: %x>\n", e_ident[EI_CLASS]);
 }
 
 /**
@@ -156,7 +154,6 @@ void printClass(unsigned char *e_ident)
 void printData(unsigned char *e_ident)
 {
 	elfData data[] = {
-		{ELFDATANONE, "none"},
 		{ELFDATA2LSB, "2's complement, little endian"},
 		{ELFDATA2MSB, "2's complement, big endian"},
 	};
