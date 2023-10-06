@@ -230,7 +230,9 @@ void printOSABI(unsigned char *e_ident)
 		}
 		index++;
 	}
-	dprintf(STDOUT_FILENO, "  OS/ABI:                            <unknown: %x>\n", e_ident[EI_OSABI]);
+	dprintf(STDOUT_FILENO,
+	"  OS/ABI:                            <unknown: %x>\n",
+	e_ident[EI_OSABI]);
 }
 
 /**
@@ -281,7 +283,9 @@ void printType(unsigned int e_type, unsigned char *e_ident)
 		}
 		index++;
 	}
-	dprintf(STDOUT_FILENO, "  Type:                              <unknown: %x>\n", e_type);
+	dprintf(STDOUT_FILENO,
+	"  Type:                              <unknown: %x>\n",
+	e_type);
 }
 
 /**
