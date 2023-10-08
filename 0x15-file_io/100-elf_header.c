@@ -133,7 +133,7 @@ void printClass(unsigned char *e_ident)
 		{ELFCLASS64, "ELF64"},
 	};
 	int index = 0;
-	int len = sizeof(classes) / sizeof(classes);
+	int len = sizeof(classes) / sizeof(*classes);
 
 	while (index < len)
 	{
