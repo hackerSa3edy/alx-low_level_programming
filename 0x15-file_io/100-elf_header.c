@@ -133,7 +133,7 @@ void printClass(unsigned char *e_ident)
 		{ELFCLASS64, "ELF64"},
 	};
 	int index = 0;
-	int len = sizeof(classes);
+	int len = sizeof(classes) / sizeof(classes);
 
 	while (index < len)
 	{
@@ -162,7 +162,7 @@ void printData(unsigned char *e_ident)
 		{ELFDATA2MSB, "2's complement, big endian"},
 	};
 	int index = 0;
-	int len = sizeof(data);
+	int len = sizeof(data) / sizeof(*data);
 
 	while (index < len)
 	{
@@ -221,7 +221,7 @@ void printOSABI(unsigned char *e_ident)
 		{ELFOSABI_STANDALONE, "Standalone App"},
 	};
 	int index = 0;
-	int len = sizeof(ABI);
+	int len = sizeof(ABI) / sizeof(*ABI);
 
 	while (index < len)
 	{
@@ -271,7 +271,7 @@ void printType(unsigned int e_type, unsigned char *e_ident)
 		{ET_CORE, "CORE (Core file)"},
 	};
 	int index = 0;
-	int len = sizeof(type);
+	int len = sizeof(type) / sizeof(*type);
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type = e_ident[17];
