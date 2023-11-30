@@ -70,6 +70,7 @@ hash_node_t *handle_collision(hash_table_t **ht, hash_node_t **n_node)
 	hash_table_t *hash_table = *ht;
 	hash_node_t *new_node = *n_node;
 	const char *key = new_node->key, *value = new_node->value;
+	char *temp_value = NULL;
 	unsigned long int hash_k;
 	hash_node_t *collision_nodes = NULL;
 
@@ -89,11 +90,12 @@ hash_node_t *handle_collision(hash_table_t **ht, hash_node_t **n_node)
 	}
 	else
 	{
-		free(collision_nodes->value);
-		collision_nodes->value = strdup(value);
+		temp_value = strdup(value);
 		free_node(new_node);
-		if (collision_nodes->value == NULL)
+		if (temp_value == NULL)
 			return (NULL);
+		free(collision_nodes->value);
+		collision_nodes->value = temp_value;
 	}
 	return (collision_nodes);
 }
