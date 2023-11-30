@@ -15,7 +15,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *collision = NULL;
 	unsigned long int hash_k;
 
-	if (new_node == NULL || key == NULL || strcmp(key, "") == 0)
+	if (!ht || !new_node || !key || strcmp(key, "") == 0)
 	{
 		free(new_node);
 		return (0);
