@@ -12,10 +12,7 @@ void hash_table_print(const hash_table_t *ht)
 	unsigned long int index, sep_index;
 
 	if (ht == NULL)
-	{
-		printf("{}\n");
 		return;
-	}
 
 	printf("{");
 	sep_index = 0;
