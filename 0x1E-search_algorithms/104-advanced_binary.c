@@ -70,7 +70,7 @@ size_t check_index(int *arr, size_t beg, size_t end, int value)
 	else if (arr[index] == value || beg == end)
 		return (index);
 	else if (arr[index] > value)
-		return (check_index(arr, beg, index - 1, value));
+		return (check_index(arr, beg, index, value));
 	else
 		return (check_index(arr, index + 1, end, value));
 }
