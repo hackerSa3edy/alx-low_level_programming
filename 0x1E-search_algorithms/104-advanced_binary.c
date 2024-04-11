@@ -18,7 +18,8 @@ void print_arr(int *array, size_t beg, size_t end);
  *	process until it finds the value or exhausts the search space. If the array
  *	is NULL, it returns -1 immediately.
  *
- * Return: Index where value is located, or -1 if value is not present or if array is NULL
+ * Return: Index where value is located, or -1 if value is not present or if
+ * array is NULL
  */
 int advanced_binary(int *array, size_t size, int value)
 {
@@ -65,13 +66,13 @@ size_t check_index(int *arr, size_t beg, size_t end, int value)
 	/*printf("index: %li\n", index);*/
 
 	if (index != 0 && arr[index - 1] == value)
-		return check_index(arr, beg, index, value);
+		return (check_index(arr, beg, index, value));
 	else if (arr[index] == value || beg == end)
-		return index;
+		return (index);
 	else if (arr[index] > value)
-		return check_index(arr, beg, index - 1, value);
+		return (check_index(arr, beg, index - 1, value));
 	else
-		return check_index(arr, index + 1, end, value);
+		return (check_index(arr, index + 1, end, value));
 }
 
 /**
