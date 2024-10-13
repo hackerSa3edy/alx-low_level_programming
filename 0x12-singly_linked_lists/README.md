@@ -1,27 +1,32 @@
-# Project: 0x12. C - Singly linked lists
+# 0x12-singly_linked_lists
 
-## Resources
+## Description
 
-#### Read or watch:
+This project focuses on singly linked lists in C. It covers how to define and use singly linked lists, how to traverse and manipulate them, and how to apply these concepts to solve problems effectively. The project aims to provide a deep understanding of these fundamental concepts in C programming.
 
-* [Linked Lists](https://intranet.alxswe.com/rltoken/joxg32-tt4lUh8Afgst8tA)
-* [Google](https://intranet.alxswe.com/rltoken/USaZbNdfcuIFII-K2YPsKQ)
-* [Youtube](https://intranet.alxswe.com/rltoken/epKUCIcoA6XaN1T3Vtr_9w)
-## Learning Objectives
+### Resources
 
-### General
+#### Read or watch
 
-* When and why using linked lists vs arrays
-* How to build and use linked lists
-## Tasks
+- [Singly Linked List](https://www.geeksforgeeks.org/data-structures/linked-list/singly-linked-list/)
+- [Linked Lists in C](https://www.tutorialspoint.com/data_structures_algorithms/linked_list_program_in_c.htm)
+- [Singly Linked List in C](https://www.programiz.com/dsa/linked-list)
+- [C Programming - Linked Lists](https://www.studytonight.com/data-structures/linked-list)
 
-| Task | File |
-| ---- | ---- |
-| 0. Print list | [0-print_list.c](./0-print_list.c) |
-| 1. List length | [1-list_len.c](./1-list_len.c) |
-| 2. Add node | [2-add_node.c](./2-add_node.c) |
-| 3. Add node at the end | [3-add_node_end.c](./3-add_node_end.c) |
-| 4. Free list | [4-free_list.c](./4-free_list.c) |
-| 5. The Hare and the Tortoise | [100-first.c](./100-first.c) |
-| 6. Real programmers can write assembly code in any language | [101-hello_holberton.asm](./101-hello_holberton.asm) |
+### Learning Objectives
 
+#### General
+
+- When and why using linked lists vs arrays.
+- How to build and use linked lists.
+
+### Tasks
+
+| Task Name                 | File                                   | Description                                                                      |
+| ------------------------- | -------------------------------------- | -------------------------------------------------------------------------------- |
+| Print list                | [0-print_list.c](./0-print_list.c)     | Writes a function that prints all the elements of a `list_t` list.               |
+| List length               | [1-list_len.c](./1-list_len.c)         | Writes a function that returns the number of elements in a linked `list_t` list. |
+| Add node                  | [2-add_node.c](./2-add_node.c)         | Writes a function that adds a new node at the beginning of a `list_t` list.      |
+| Add node at the end       | [3-add_node_end.c](./3-add_node_end.c) | Writes a function that adds a new node at the end of a `list_t` list.            |
+| Free list                 | [4-free_list.c](./4-free_list.c)       | Writes a function that frees a `list_t` list.                                    |
+| The Hare and the Tortoise | [100-first.c](./100-first.c)           | Writes a function that prints a message before the `main` function is executed.  |

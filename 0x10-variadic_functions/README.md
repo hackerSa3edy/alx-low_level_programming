@@ -1,25 +1,31 @@
-# Project: 0x10. C - Variadic functions
+# 0x10-variadic_functions
 
-## Resources
+## Description
 
-#### Read or watch:
+This project focuses on variadic functions in C. It covers how to define and use variadic functions, how to handle variable arguments, and how to apply these concepts to solve problems effectively. The project aims to provide a deep understanding of these fundamental concepts in C programming.
 
-* [stdarg.h](https://intranet.alxswe.com/rltoken/wLRJdO8pA2-Vb-rF2Y71sA)
-* [Variadic Functions](https://intranet.alxswe.com/rltoken/3gW8GycmyjarbJR76FkrzA)
-* [Const Keyword](https://intranet.alxswe.com/rltoken/_RRPCY32VODyN_r2HIEnBQ)
-## Learning Objectives
+### Resources
 
-### General
+#### Read or watch
 
-* What are variadic functions
-* How to use <code>va_start</code>, <code>va_arg</code> and <code>va_end</code> macros
-* Why and how to use the <code>const</code> type qualifier
-## Tasks
+- [Variadic Functions in C](https://www.geeksforgeeks.org/variadic-functions-in-c/)
+- [C Variadic Functions](https://www.tutorialspoint.com/cprogramming/c_variable_arguments.htm)
+- [Variadic Functions](https://www.programiz.com/c-programming/c-variadic-functions)
+- [C Programming - Variadic Functions](https://www.studytonight.com/c/variadic-functions.php)
 
-| Task | File |
-| ---- | ---- |
-| 0. Beauty is variable, ugliness is constant | [0-sum_them_all.c](./0-sum_them_all.c) |
-| 1. To be is to be the value of a variable | [1-print_numbers.c](./1-print_numbers.c) |
-| 2. One woman's constant is another woman's variable | [2-print_strings.c](./2-print_strings.c) |
-| 3. To be is a to be the value of a variable | [3-print_all.c](./3-print_all.c) |
+### Learning Objectives
 
+#### General
+
+- What are variadic functions.
+- How to use `va_start`, `va_arg`, and `va_end` macros.
+- Why and how to use the `const` type qualifier.
+
+### Tasks
+
+| Task Name                                        | File                                     | Description                                                    |
+| ------------------------------------------------ | ---------------------------------------- | -------------------------------------------------------------- |
+| Beauty is variable, ugliness is constant         | [0-sum_them_all.c](./0-sum_them_all.c)   | Writes a function that returns the sum of all its parameters.  |
+| To be is to be the value of a variable           | [1-print_numbers.c](./1-print_numbers.c) | Writes a function that prints numbers, followed by a new line. |
+| One woman's constant is another woman's variable | [2-print_strings.c](./2-print_strings.c) | Writes a function that prints strings, followed by a new line. |
+| To be is a to be the value of a variable         | [3-print_all.c](./3-print_all.c)         | Writes a function that prints anything.                        |
